@@ -69,4 +69,4 @@ function shortestPath(start, goal, spacesToAvoid) {
     return null;
 }
 
-module.exports = { shortestPath, findSpacesToAvoid, getIndex }
+export default { shortestPath, findSpacesToAvoid, getIndex };

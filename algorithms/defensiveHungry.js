@@ -7,4 +7,4 @@ const PathFinder = require('../pathFinder');
         return directionOfFood ? directionOfFood : Movement.chaseTail(gameState, invalidSpaces);
     }
 
-    module.exports(move);
+    export default move;

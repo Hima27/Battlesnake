@@ -58,5 +58,5 @@ function chaseTail(state, invalidSpaces) {
     return (pathToTail && pathToTail.length) ? pathToTail.direction : notImmediatelySuicidal(state, invalidSpaces);
 }
 
-module.exports = { chaseTail, getBestFood };
+export default { chaseTail, getBestFood };
 
