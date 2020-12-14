@@ -52,12 +52,12 @@ function handleMove(request, response) {
   function findSpacesToAvoid(state) {
     const setToReturn = new Set();
     for (const coord of state.board.hazards) {
-      spacesToAvoid.add(getIndex(coord));
+      setToReturn.add(getIndex(coord));
     }
 
     for (const snake of state.board.snakes) {
       for (const coord of snake.body) {
-        spacesToAvoid.add(getIndex(coord));
+        setToReturn.add(getIndex(coord));
       }
     }
     return setToReturn;
@@ -184,8 +184,11 @@ function handleMove(request, response) {
       : chaseTail(gameState, invalidSpaces);
   }
 
+  const direction = move(request.body);
+    console.log("direction: " + direction);
+
   response.status(200).send({
-    move: move(request.body),
+    move: direction,
   });
 }
 
