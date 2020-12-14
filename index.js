@@ -187,8 +187,11 @@ function handleMove(request, response) {
   const direction = move(request.body);
     console.log("direction: " + direction);
 
+  const nextDirection = move(request.body);
+  console.log("direction: " + nextDirection);
+
   response.status(200).send({
-    move: direction,
+    move: nextDirection,
   });
 }
 
