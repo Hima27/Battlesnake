@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const DefensiveHungry = require('./algorithms/defensiveHungry');
 
 const PORT = process.env.PORT || 3000
 
@@ -40,8 +41,8 @@ function handleMove(request, response) {
 
   console.log('MOVE: ' + move)
   response.status(200).send({
-    move: move
-  })
+    move: DefensiveHungry.move(request.body)
+  });
 }
 
 function handleEnd(request, response) {
