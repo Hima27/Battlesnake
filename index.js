@@ -35,18 +35,70 @@ function handleStart(request, response) {
 function handleMove(request, response) {
   var gameData = request.body
 
+  //console.log(gameData.board.food)
+  //console.log(gameData.you.head)
+
+  //var foodPlaces = new Array() //foodplaces is empty right now
+  //console.log("game DATA : " ,gameData.board.food[0])
+  var foodPlaces = gameData.board.food[0]
+
+  currHead = gameData.you.head //autmatically changes after every turn
+  //console.log("//////",currHead)
+
+  if(currHead.x < foodPlaces.x){
+    console.log("------MOVE TO THE RIGHT------")
+      response.status(200).send({
+    move: 'right'
+    })
+    //console.log("I AM HERE:", currHead)
+    
+    if(currHead.x == foodPlaces.x){
+      if(currHead.y < foodPlaces.y){
+        response.status(200).send({
+          move: 'up'
+        })
+      }
+      else if(currHead.y > foodPlaces.y){
+        response.status(200).send({
+          move: 'down'
+        })
+      }
+    }
+  
+  }
+  else if((currHead.x == foodPlaces.x) && (currHead.y < foodPlaces.y)){
+    response.status(200).send({
+      move: 'up'
+    })
+  }
+  else if((currHead.x == foodPlaces.x) && (currHead.y > foodPlaces.y)){
+    response.status(200).send({
+      move: 'down'
+    })
+  }
+  else{
+    console.log("------MOVE TO THE LEFT------")
+      response.status(200).send({
+    move: 'left'
+    })
+    //console.log("I AM HERE:", currHead)
+  }
+
+
   var possibleMoves = ['up', 'down', 'left', 'right']
   var move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
 
-  console.log('MOVE: ' + move)
-  response.status(200).send({
-    move: move
-  })
+  //console.log('MOVE: ' + move)
+  // response.status(200).send({
+  //   move: move
+  // })
 }
 
 function handleEnd(request, response) {
   var gameData = request.body
 
   console.log('END')
+
+  console.log(gameData)
   response.status(200).send('ok')
 }
